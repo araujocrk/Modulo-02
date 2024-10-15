@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title">My First Page</h1>
+    <p id="first-paragraph">My First Paragraph</p>
+    <p id="result"></p>    
+    <script>
+        /*Formas de mostrar conteúdo na página:
+        1: Mudar o conteúdo do elemento HTML*/
+        document.getElementById('title').innerHTML = 'My First Page Updated';
+        document.getElementById('first-paragraph').innerHTML = 'New Paragraph';
+        // 2: Escrevendo dados com document.write (Usar apenas para teste)
+        document.write(5 + 12);
+        // 3: Criar uma mensagem em uma caixa de alerta(Usar window é opcional)
+        window.alert('First alert box message');
+        // Para propósitos de debug, mostar dados no navegador
+        console.log('Message in console');
+    </script>
+</body>
+</html>
