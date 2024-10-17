@@ -34,11 +34,11 @@ def main():
         meuJogo.obterEscolhaComputador()
         print(f'Computador escolheu {meuJogo.escolhaComputador}')
         print(meuJogo.obterResultado())
-        vaiContinuar = input('Jogar Novamente? (S/N) ').upper()
-        if vaiContinuar[0] == 'N':
+        vaiContinuar = input('Jogar Novamente? (S/N): ').strip().lower()
+        if vaiContinuar[0] == 'n':
             print('Encerrando o jogo...')
             break
-        elif vaiContinuar[0] == 'S':
+        elif vaiContinuar[0] == 's':
             pass
         else:
             print('Opção inválida! Jogo reiniciado.')
