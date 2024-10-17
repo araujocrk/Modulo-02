@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Trocando o Conteúdo do h2 com o Parágrafo</h1>
+    <h2 id="h2">Meu Título</h2>
+    <p id="p1">Meu Parágrafo</p>
+    <script>
+        var h2, p1
+        h2 = document.getElementById('h2').innerHTML;
+        p1 = document.getElementById('p1').innerHTML;
+        document.getElementById('h2').innerHTML = p1;
+        document.getElementById('p1').innerHTML = h2;
+    </script>
+</body>
+</html>

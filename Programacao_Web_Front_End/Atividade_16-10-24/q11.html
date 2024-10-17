@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Exbir Endereços em um Único Parágrafo</h1>
+    <p id="logradouro">Rua da Imprensa</p>
+    <p id="numero">402</p>
+    <p id="bairro">Monte Castelo</p>
+    <p id="complemento">Próximo à praça Rosewood</p>
+    <p id="cidade">Campo Grande</p>
+    <script>
+        var logradouro, numero, bairro, complemento, cidade;
+        logradouro = document.getElementById('logradouro');
+        numero = document.getElementById('numero');
+        bairro = document.getElementById('bairro');
+        complemento = document.getElementById('complemento');
+        cidade = document.getElementById('cidade');
+        document.write('<p>Logradouro: ' + logradouro.innerHTML +
+        ', Numero: ' + numero.innerHTML +
+        ', Bairro: ' + bairro.innerHTML +
+        ', Complemento: ' + complemento.innerHTML +
+        ', Cidade: ' + cidade.innerHTML + '</p>')
+    </script>
+</body>
+</html>
