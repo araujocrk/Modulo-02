@@ -1,32 +1,44 @@
 def main():
     class CalculadoraSimples:
-        def __init__(self):
-            self.resultado = None
-# Colocar n1 e n2 no init
-        def operacoes(self, n1, simbolo, n2):
-            if simbolo == '+':
-                self.resultado = n1 + n2
-            elif simbolo == '-':
-                self.resultado = n1 - n2
-            elif simbolo == '*':
-                self.resultado = n1 * n2
-            elif simbolo == '/':
-                if n2 == 0:
-                    self.resultado = 'Erro: Divisão por 0'
+        n1 = 0
+        n2 = 0
+        operacao = None
+            
+        def operacoes(self, n1, n2, operacao):
+            self.n1 = n1
+            self.n2 = n2
+            self.operacao = operacao
+            
+            if self.operacao == '+':
+                return self.n1 + self.n2
+            elif self.operacao == '-':
+                return self.n1 - self.n2
+            elif self.operacao == '*':
+                return self.n1 * self.n2
+            elif self.operacao == '/':
+                if self.n2 == 0:
+                    return 'Erro: Divisão por zero'
                 else:
-                    self.resultado = n1 / n2
-            return self.resultado
-# Adicionar else caso o user erre a operação 
+                    return self.n1 / self.n2
+            else:
+                return 'Operação inválida'
     
     minhaCalculadora = CalculadoraSimples()
-# Criar um while True e dar uma saída para o 
-# usuario caso ele queira e após a operação 
-# perguntar se ele quer continuar
-    minhaCalculadora.operacoes(
-        float(input('Digite o primeiro número: ')), 
-        input('Digite se você deseja somar(+), subtrair(-), multiplicar(*) ou dividir(/): '), 
-        float(input('Digite o segundo número: '))
-        )
-    print(minhaCalculadora.resultado)
+    while True:
+        try:
+            numero1 = float(input('Digite o primeiro número: '))
+            numero2 = float(input('Digite o segundo número: '))
+            operacao = input('Escolha a operação (+, -, *, /) ou "s" para sair: ')
+            if operacao == 's':
+                print('Encerrando a calculadora...')
+                break
+            resultado = minhaCalculadora.operacoes(numero1, numero2, operacao)
+            print(f'{minhaCalculadora.n1} {minhaCalculadora.operacao} {minhaCalculadora.n2} = {resultado}')
+            vaiContinuar = input('Deseja continuar? (S/N): ')
+            if vaiContinuar.upper() == 'N':
+                break
+        except ValueError:
+            print('Por favor, digite valores numéricos válidos.')
+            
 if __name__ == '__main__':
     main()
