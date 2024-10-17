@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Questão 11</title>
 </head>
 <body>
     <h1>Exbir Endereços em um Único Parágrafo</h1>
-    <p id="logradouro">Rua da Imprensa</p>
-    <p id="numero">402</p>
-    <p id="bairro">Monte Castelo</p>
-    <p id="complemento">Próximo à praça Rosewood</p>
-    <p id="cidade">Campo Grande</p>
+    <p id="logradouro">Logradouro: Rua da Imprensa</p>
+    <p id="numero">Número da casa: 402</p>
+    <p id="bairro">Bairro: Monte Castelo</p>
+    <p id="complemento">Complemento: Próximo à praça Rosewood</p>
+    <p id="cidade">Cidade: Campo Grande</p>
     <script>
-        var logradouro, numero, bairro, complemento, cidade;
-        logradouro = document.getElementById('logradouro');
-        numero = document.getElementById('numero');
-        bairro = document.getElementById('bairro');
-        complemento = document.getElementById('complemento');
-        cidade = document.getElementById('cidade');
-        document.write('<p>Logradouro: ' + logradouro.innerHTML +
-        ', Numero: ' + numero.innerHTML +
-        ', Bairro: ' + bairro.innerHTML +
-        ', Complemento: ' + complemento.innerHTML +
-        ', Cidade: ' + cidade.innerHTML + '</p>')
+        var logradouro = document.getElementById('logradouro');
+        var numero = document.getElementById('numero');
+        var bairro = document.getElementById('bairro');
+        var complemento = document.getElementById('complemento');
+        var cidade = document.getElementById('cidade');
+        document.write('<p>' + logradouro.innerHTML +
+        ', ' + numero.innerHTML +
+        ', ' + bairro.innerHTML +
+        ', ' + complemento.innerHTML +
+        ', ' + cidade.innerHTML + '</p>')
     </script>
 </body>
 </html>
