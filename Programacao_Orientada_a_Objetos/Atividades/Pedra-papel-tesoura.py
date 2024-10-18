@@ -4,17 +4,14 @@ class Jogo:
     escolhaUsuario = None
     opcoes = ['pedra', 'papel', 'tesoura']
     
-    def obterEscolhaUsuario(self):
+    def obterEscolhaUsuarioAndComputador(self):
         self.escolhaUsuario = input('Escolha Pedra, Papel ou Tesoura: ').strip().lower()
+        self.escolhaComputador = random.choice(self.opcoes)
         if self.escolhaUsuario in self.opcoes:
             return self.escolhaUsuario
         else:
             print('Escolha inválida. Tente novamente!')
             return self.obterEscolhaUsuario()
-        
-    def obterEscolhaComputador(self):
-        self.escolhaComputador = random.choice(self.opcoes)
-        return self.escolhaComputador
 
     def obterResultado(self):
         if self.escolhaComputador == self.escolhaUsuario:
@@ -30,8 +27,7 @@ def main():
     print('Bem-vindo ao jogo Pedra, Papel e Tesoura!')
     meuJogo = Jogo()
     while True:
-        meuJogo.obterEscolhaUsuario()
-        meuJogo.obterEscolhaComputador()
+        meuJogo.obterEscolhaUsuarioAndComputador()
         print(f'Computador escolheu {meuJogo.escolhaComputador}')
         print(meuJogo.obterResultado())
         vaiContinuar = input('Jogar Novamente? (S/N): ').strip().lower()
