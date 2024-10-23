@@ -8,7 +8,7 @@ class Jogo:
         self.escolhaUsuario = input('Escolha Pedra, Papel ou Tesoura: ').strip().lower()
         self.escolhaComputador = random.choice(self.opcoes)
         if self.escolhaUsuario in self.opcoes:
-            return self.escolhaUsuario
+            pass
         else:
             print('Escolha inválida. Tente novamente!')
             return self.obterEscolhaUsuario()
