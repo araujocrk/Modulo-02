@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="js-course.css">
     <title>Document</title>
 </head>
+<script src="js-course.js" defer>
+
+</script>
 <body>
     <h1>free Code Camp Course</h1>
     <h2>Data Types</h2>
@@ -24,10 +27,21 @@
     <p>They can be created with <strong>var</strong>, <strong>let</strong> or <strong>const</strong>.</p>
     <script>
         var myName = 'Ryan';
-        myName = 'Araújo';
         let lastName = 'Silva';
-        const pi = 3.14;
+        console.log(myName);
+        console.log(lastName);
+        let completeName = myName + ' ' + lastName;
+        console.log(completeName);
     </script>
-    <p>The diference between var and let is that a var is going to be able to be used throughout your whole program.</p>
+    <script>
+        const pi = 3.14;
+        let raio = 10;
+        let area, area2;
+        area = pi * raio * raio;
+        area2 = pi * (raio + 5) * (raio + 5);
+        console.log(area);
+        console.log(area2);
+    </script>
+    <p>The diference between var and let is that a var is going to be able to be used throughout your whole program and let is going to be limited to the scope of where you declared it. const is a variable should/it can never change</p>
 </body>
 </html>
