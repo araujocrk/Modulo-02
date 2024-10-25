@@ -16,3 +16,17 @@ function clickButtonGoodEvening() {
     resultGood.innerHTML = 'Boa Noite' + ' ' + name.value;
 }
 
+var resultNumberRandom = document.getElementById('resultNumberRandom');
+var numberRandom = Math.floor((Math.random() * 10) + 1);
+resultNumberRandom.innerHTML += numberRandom;
+
+var buttonNumberAbs = document.getElementById('buttonNumberAbs');
+buttonNumberAbs.addEventListener('click', clickButtonNumberAbs);
+
+function clickButtonNumberAbs() {
+    var resultNumberAbs = document.getElementById('resultNumberAbs');
+    var numberAbs = document.getElementById('numberAbs').value;
+    numberAbs = Math.abs(numberAbs);
+    resultNumberAbs.innerHTML = numberAbs;
+}
+
