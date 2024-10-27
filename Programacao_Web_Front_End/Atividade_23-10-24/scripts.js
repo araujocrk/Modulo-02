@@ -27,6 +27,35 @@ function clickButtonNumberAbs() {
     var resultNumberAbs = document.getElementById('resultNumberAbs');
     var numberAbs = document.getElementById('numberAbs').value;
     numberAbs = Math.abs(numberAbs);
-    resultNumberAbs.innerHTML = numberAbs;
+    resultNumberAbs.innerHTML += ' ' + numberAbs + ';';
+}
+
+var buttonNumberMax = document.getElementById('buttonNumberMax');
+buttonNumberMax.addEventListener('click', clickButtonNumberMax);
+
+function clickButtonNumberMax() {
+    var resultNumberMax = document.getElementById('resultNumberMax');
+    var number1 = document.getElementById('number1').value;
+    var number2 = document.getElementById('number2').value;
+    resultNumberMax.innerHTML += ' ' + Math.max(number1, number2) + ';';
+}
+
+var buttonNumberRound = document.getElementById('buttonNumberRound');
+buttonNumberRound.addEventListener('click', clickButtonNumberRound);
+
+function clickButtonNumberRound() {
+    var resultNumberRound = document.getElementById('resultNumberRound');
+    var numberRound = document.getElementById('numberRound').value;
+    resultNumberRound.innerHTML += ' ' + Math.round(numberRound) + ';';
+}
+
+var buttonNumberPow = document.getElementById('buttonNumberPow');
+buttonNumberPow.addEventListener('click', clickButtonNumberPow);
+
+function clickButtonNumberPow() {
+    var resultNumberPow = document.getElementById('resultNumberPow');
+    var numberPow1 = document.getElementById('numberPow1').value;
+    var numberPow2 = document.getElementById('numberPow2').value;
+    resultNumberPow.innerHTML += ' ' + Math.pow(numberPow1, numberPow2) + ';';
 }
 
