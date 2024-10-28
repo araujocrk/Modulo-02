@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,55 +9,89 @@
 
     </script>
 </head>
+
 <body>
     <h1>Atividade de PWF</h1>
     <h2>Questão 1 e 2</h2>
-    <input type="text" id="name" placeholder="Digite seu nome"><br>
-    <button id="buttonGoodAfternoon">Receba um boa tarde</button><br>
+    <h3>Digite seu nome e receba uma saudação.</h3>
+    <input type="text" id="name" placeholder="Digite seu nome"><br><br>
+    <button id="buttonGoodAfternoon">Receba um boa tarde</button><br><br>
     <button id="buttonGoodEvening">Receba um boa noite</button>
     <div id="resultGood"></div>
 
     <h2>Questão 3</h2>
     <h3>a&#41; Exiba um número randômico entre 1 e 10 &#40;Math.random&#41;</h3>
-    <div id="resultNumberRandom">Este número foi gerado aleatoriamente com JS: </div>
+    <div id="resultNumberRandom"></div>
 
     <h3>b&#41; Exiba o valor absoluto de um número lido &#40;Math.abs&#41;</h3>
     <input type="text" id="numberAbs" placeholder="Digite qualquer número">
     <button id="buttonNumberAbs">Enviar</button>
-    <div id="resultNumberAbs">O valor absoluto de seu número é:</div>
+    <div id="resultNumberAbs"></div>
 
     <h3>c&#41; Leia 2 números e exiba o maior deles &#40;Math.max&#41;</h3>
     <input type="text" id="number1" placeholder="Digite o primeiro número">
     <input type="text" id="number2" placeholder="Digite o segundo número">
     <button id="buttonNumberMax">Enviar</button>
-    <div id="resultNumberMax">O maior número entre os dois é:</div>
+    <div id="resultNumberMax"></div>
 
     <h3>d&#41; Leia um número real e exiba-o de forma arredondada &#40;Math.round&#41;</h3>
     <input type="text" id="numberRound" placeholder="Digite um número real">
     <button id="buttonNumberRound">Enviar</button>
-    <div id="resultNumberRound">Seu número arredondado é:</div>
+    <div id="resultNumberRound"></div>
 
     <h3>e&#41; Leia dois números e exiba um elevado ao outro &#40;Math.pow&#41;</h3>
     <input type="text" id="numberPow1" placeholder="Digite o primeiro número">
     <input type="text" id="numberPow2" placeholder="Digite o segundo número">
     <button id="buttonNumberPow">Enviar</button>
-    <div id="resultNumberPow">O primeiro número elevado ao segundo é:</div>
+    <div id="resultNumberPow"></div>
+
+    <h2>Questão 4</h2>
+    <h3>a&#41; Exiba o tamanho de uma palavra &#40;length&#41;</h3>
+    <input type="text" id="wordLength" placeholder="Digite uma palavra">
+    <button id="buttonWordLength">Enviar</button>
+    <div id="resultWordLength"></div>
+
+    <h3>b&#41; Converta a frase em letras minúsculas &#40;toLowerCase&#41;</h3>
+    <input type="text" id="phraseLower" placeholder="Digite uma frase">
+    <button id="buttonPhraseLower">Enviar</button>
+    <div id="resultPhraseLower"></div>
+
+    <h3>c&#41; Substitua as ocorrências de 'a', 'e', 'i', 'o' por '@', '3', '1', '0' &#40;replace&#41;</h3>
+    <input type="text" id="phraseReplace" placeholder="Digite uma frase">
+    <button id="buttonPhraseReplace">Enviar</button>
+    <div id="resultPhraseReplace"></div>
+
+    <h3>d&#41; Exiba a frase sem espaços antes e depois &#40;trim&#41;</h3>
+    <input type="text" id="phraseTrim" placeholder="Digite uma frase">
+    <button id="buttonPhraseTrim">Enviar</button>
+    <div id="resultPhraseTrim"></div>
+
+    <h2>Questão 5</h2>
+    <h3>a&#41; Leia o nome e sobrenome de uma pessoa e exiba o nome completo</h3>
+    <input type="text" id="firstName" placeholder="Digite seu nome">
+    <input type="text" id="lastName" placeholder="Digite seu sobrenome">
+    <button id="buttonFullName">Enviar</button>
+    <div id="resultFullName"></div>
+
+    <h3>b&#41; Leia 2 números e exiba a soma e a diferença deles</h3>
+    <input type="number" id="number1SumAndDifference" placeholder="Digite o primeiro número">
+    <input type="number" id="number2SumAndDifference" placeholder="Digite o segundo número">
+    <button id="buttonSumAndDifference">Enviar</button>
+    <div id="resultSumAndDifference"></div>
+
+    <h3>c&#41; Limpe o conteúdo de uma Caixa ao clicar em um botão</h3>
+    <input type="text" id="cleanText" placeholder="Digite um texto">
+    <button id="buttonCleanText">Limpar</button>
+
+    <h3>d&#41; Copie o texto de uma caixa de texto para outra</h3>
+    <input type="text" id="copyText" placeholder="Digite um texto">
+    <button id="buttonCopyText">Copiar</button>
+    <br><br>
+    <div>
+        <p style="display: inline;">Resultado:</p>
+        <input type="text" id="resultCopyText">
+    </div>
 
 </body>
-</html>
-<!--
-4) Pesquise a documentação para uso de métodos de strings
-https://www.w3schools.com/js/js_string_methods.asp e crie implementações que:
-a) Exiba o seu tamanho (lenght);
-b) Converta-o para minúsculo (toLowerCase);
-c) Substitua as ocorrências de 'a', 'e', 'i', 'o' por '@', '3', '1', '0' (replace);
-d) Exiba-o sem espaços antes e depois (trim);
 
-5) Crie implementações que:
-a) Leia o nome e o sobrenome de uma pessoa de duas caixas de texto e
-exiba o nome completo;
-b) Leia 2 números de um formulário HTML números e exiba a soma e
-diferença deles;
-c) Limpe o conteúdo de uma Caixa ao clicar em um botão.
-d) Copie o texto de uma caixa de texto para outra.
--->
+</html>
