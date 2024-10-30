@@ -7,7 +7,7 @@ class RelogioDigitalSimples:
             #self.segundo = segundo
         #else:
 
-    # Usei o parâmetro quantidade para não ter que usar vários métodos.
+    # Usei o parâmetro quantidade para não ter que usar vários métodos no main.
     def passarTempo(self, quantidade):
         #self.segundo += 1
         #if self.segundo == 60:
