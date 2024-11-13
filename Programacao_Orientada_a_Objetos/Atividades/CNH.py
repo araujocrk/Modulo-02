@@ -1,13 +1,22 @@
+from datetime import date
 class CarteiraDeHabilitacao:
-    def __init__ (self, nome, orgaoEmissor, cpf, dataNascimento, filiacao, permissao, acc, categoria, numeroRegistro, validade, primeiraCNH, local, dataEmissao, assinaturaPortador, assinaturaEmissor, observacoes=None):
-        self.nome = nome
+    def __init__(self, nome, orgaoEmissor, cpf, dataNascimento, pai, mae, permissao, acc, categoria, numeroRegistro, validade, primeiraCNH, local, dataEmissao, assinaturaPortador, assinaturaEmissor, observacoes=None):
+        if len(nome) < 40:
+            self.nome = nome
+        else:
+            print('Quantidade inválida. Tente abreviar seu Nome')
         self.orgaoEmissor = orgaoEmissor
-        self.cpf = cpf
+        if len(cpf) == 11:
+            self.cpf = cpf
+        else:
+            print('Quantidade inválida. Digite apenas os 11 números do CPF')
+
         self.dataNascimento = dataNascimento
-        self.filiacao = filiacao
+        self.filiacao = pai, mae
         self.permissao = permissao
         self.acc = acc
-        self.categoria = categoria
+        self.categoria = categoria if categoria in ['A', 'B', 'C', 'D', 'E', 'AB', 'AC', 'AD', 'AE'] else raise ValueError('Categoria Inválida')
+        #Expressão ternária não funciona raise
         self.numeroRegistro = numeroRegistro
         self.validade = validade
         self.primeiraCNH = primeiraCNH
@@ -18,13 +27,7 @@ class CarteiraDeHabilitacao:
         self.observacoes = observacoes
 
 def main():
-    ryanCNH = CarteiraDeHabilitacao(
-        input('Nome: '), input('Orgão Emissor: '), input('CPF (somente numeros): '), input('Data de Nascimento ddmmaaaa: '), 
-        input('Nome do pai: '), input('Nome da mãe: '), input('Permissão: '), input('ACC: '), 
-        input('Categoria: '), input('Número de Registro: '), input('Validade: '), input('Data da primeira CNH: '),
-        input('Local: '), input('Data de Emissão: '),
-        input('Assinatura do Portador: '), input('Assinatura do Emissor: '),
-        input('Observações: ') or None
-    )
+    ryanCNH = CarteiraDeHabilitacao('Ryan da Silva Araújo', 'Detran', '12345678912', '02042004', 'Francisco', 'Francinete', 'PERMISSÃO', 'Sim', 'B', '32165498721', '13112030', '13112024', 'Detran', '13112024', 'Ryan da Silva Araújo', 'José Freitas Soares')
+
 if __name__ == '__main__':
     main()
