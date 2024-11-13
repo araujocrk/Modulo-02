@@ -10,7 +10,7 @@ class Veiculo:
         if placa is not None:
             self.placa = placa
         else:
-            self.placa = 'Não especificada'
+            self.placa = 'Não possui placa'
         if cor is not None:
             self.cor = cor
         else:
@@ -28,7 +28,8 @@ class Veiculo:
             self.quilometragem = 0
 
     def atualizarQuilometragem(self):
-        quilometragem = input('Digite a nova quilometragem: ')
+        #quilometragem = input('Digite a nova quilometragem: ')
+        quilometragem = 15000
         try:
             self.quilometragem = int(quilometragem)
         except ValueError:
@@ -44,7 +45,7 @@ def main():
                     #input('Placa: ') or None, input('Cor: ') or None, input('Proprietário: ') or None,
                     #input('Quilometragem: ') or None)
     print(str(palio))
-    celta = Veiculo('1HGCM82633A123458', 'Chevrolet', 'Celta', 2010, 'ABC-1234', 'Prata', 'João', 10000)
+    celta = Veiculo('1HGCM82633A123458', 'Chevrolet', 'Celta', 2012, 'ABC-1234', 'Prata', 'João', 10000)
     #celta = Veiculo(input('Chassi: '), input('Marca: '), input('Modelo: '), input('Ano: '), 
                     #input('Placa: ') or None, input('Cor: ') or None, input('Proprietário: ') or None,
                     #input('Quilometragem: ') or None)
