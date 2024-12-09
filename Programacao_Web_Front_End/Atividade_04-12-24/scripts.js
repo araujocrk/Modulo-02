@@ -57,5 +57,8 @@ inputPassword.addEventListener('blur', () => {
     let errorPassword = getById('errorPassword');
     if (tamanhoPassword < 8) {
         errorPassword.innerHTML = 'Erro: Sua senha tem menos de 8 caracteres';
+    } 
+    else {
+        errorPassword.innerHTML = '';
     }
 });
