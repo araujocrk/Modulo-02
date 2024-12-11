@@ -38,20 +38,67 @@ class ArCondicionado:
         if velocidade >= vel_min and velocidade <= vel_max:
             self.velocidade = velocidade
         elif velocidade == 0:
-            self.velocidade = 'Nao informada'
+            self.velocidade = vel_min
         else:
             raise ValueError(f'Erro: A velocidade deve estar entre {vel_min} e {vel_max}.')
         
         if temperatura >= temp_min and temperatura <= temp_max:
             self.temperatura = temperatura
         elif temperatura == 0:
-            self.temperatura = 'Nao informada'
+            self.temperatura = temp_min
         else:
             raise ValueError(f'Erro: A temperatura deve estar entre {temp_min} e {temp_max}.')
+        
+    @property
+    def temp_min(self):
+        return self.__temp_min
+    
+    @property
+    def temp_max(self):
+        return self.__temp_max
+    
+    @property
+    def vel_min(self):
+        return self.__vel_min
+    
+    @property
+    def vel_max(self):
+        return self.__vel_max
         
     def ligar(self):
         if not self.ligado:
             self.ligado = True
+        else:
+            print('O ar condicionado já está ligado.')
+        
+    def desligar(self):
+        if self.ligado:
+            self.ligado = False
+        else:
+            print('O ar condicionado já está desligado.')
+            
+    def aumentar_temperatura(self):
+        if self.ligado:
+            if (self.temperatura + 1) <= self.temp_max:
+                self.temperatura += 1
+            else:
+                print('Temperatura máxima atingida.')
+        else:
+            print('Ar condicionado está desligado. Tente ligá-lo.')
+            
+    def diminuir_temperatura(self):
+        if self.ligado:
+            if (self.temperatura - 1) >= self.temp_min:
+                self.temperatura -= 1
+            else:
+                print('Temperatura mínima atingida.')
+        else:
+            print('Ar condicionado está desligado. Tente ligá-lo.')
+    
+    # def aumentar_velocidade(self):
+    #     if self.ligado:
+    #         if (self.velocidade + 1)
+            
         
     def __str__(self):
         #Printar Ligado ou Desligado e Modo formatados
@@ -84,6 +131,9 @@ def main():
     #velocidade(entre vel_min e vel_max), temperatura(entre temp_min e temp_max)
     arCondicionado1 = ArCondicionado(*atributosArCondionado())
     print(arCondicionado1)
+    arCondicionado1.aumentar_temperatura()
+    print(arCondicionado1)
+    arCondicionado1.aumentar_temperatura()
+    print(arCondicionado1)
 if __name__ == '__main__':
-    main()
-        
+    main() 
