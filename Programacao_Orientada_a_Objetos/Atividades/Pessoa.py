@@ -39,35 +39,24 @@ class Pessoa:
       self.__nome = valor
       print ("Alteração efetuada com sucesso!")
 
+  # Validar que uma Pessoa não pode se casar com ela mesma
   def casar(self,conjuge):
-    # if (self.__est_civil == "solteira" or self.__est_civil == "divorciada" or self.__est_civil == "viúva"):
-    #     if type(conjuge)==Pessoa:     
-    #         if (conjuge.__est_civil == "solteira" or conjuge.__est_civil == "divorciada" or conjuge.__est_civil == "viúva"):
-    #             self.est_civil = "casada"
-    #             self.__conjuge = conjuge
-    #             self.__conjuge.__est_civil = "casada"
-    #             self.__conjuge.__conjuge = self
-    #         else:
-    #             print("Cônjuge já é casado!")
-    #     else: 
-    #         print("Cônjuge não é uma pessoa!")
-    # else:
-    #     print("Você já está casado.")
-
-    #Validar que uma Pessoa não pode se casar com ela mesma
-    if self.__est_civil == "casada":
-        print("Você já está casado(a).")
-    else:
-        if type(conjuge)==Pessoa:
-            if conjuge.__est_civil == "casada":
-                print("Cônjuge já está casado(a).")
-            else:
-                self.est_civil = "casada"
-                self.__conjuge = conjuge
-                self.__conjuge.__est_civil = "casada"
-                self.__conjuge.__conjuge = self
+    if self.__est_civil != "casada":
+      if type(conjuge) == Pessoa:
+        if self.__id != conjuge.__id:
+          if conjuge.__est_civil != "casada":
+            self.est_civil = "casada"
+            self.__conjuge = conjuge
+            self.__conjuge.__est_civil = "casada"
+            self.__conjuge.__conjuge = self
+          else:
+            print("Cônjuge já está casado(a).")
         else:
-            print("Cônjuge não é uma pessoa!")
+          print("Você não pode casar consigo mesmo.")
+      else:
+        print("Cônjuge não é uma pessoa!")
+    else:
+       print("Você já está casado(a).")
         
   #Alterar o estado / verificar se a pessoa que morreu era casada e alterar o conjuge para viuvo
   def morrer(self):
