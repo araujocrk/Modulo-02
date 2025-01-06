@@ -69,10 +69,10 @@ class Pessoa:
         else:
             print("Cônjuge não é uma pessoa!")
         
-
+  #Alterar o estado / verificar se a pessoa que morreu era casada e alterar o conjuge para viuvo
   def morrer(self):
     pass
-
+  #Mudar o estado civil das pessoas para "divorciado"
   def divorciar(self):
     pass
 
