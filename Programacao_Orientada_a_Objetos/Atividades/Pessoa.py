@@ -54,6 +54,7 @@ class Pessoa:
     # else:
     #     print("Você já está casado.")
 
+    #Validar que uma Pessoa não pode se casar com ela mesma
     if self.__est_civil == "casada":
         print("Você já está casado(a).")
     else:
