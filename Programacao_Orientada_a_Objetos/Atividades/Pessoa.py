@@ -1,5 +1,7 @@
 class Pessoa:
   def __init__(self,nome,idade,peso,altura,sexo,estado="viva",est_civil="solteira",mae=None):
+    Pessoa.contador += 1
+    self.__id == Pessoa.contador
     self.__nome = nome
     self.__idade = idade
     self.__peso = peso
@@ -60,10 +62,25 @@ class Pessoa:
         
   #Alterar o estado / verificar se a pessoa que morreu era casada e alterar o conjuge para viuvo
   def morrer(self):
-    pass
+    if self.__estado == "viva":
+      self.__estado = "morta"
+      if type(self.__conjuge) == Pessoa:
+        if self.__sexo == "F":
+          self.__conjuge.__est_civil == "viúva"
+        elif self.__sexo == "M":
+          self.__conjuge.__est_civil == "viúvo"
+    else:
+      print("Erro: Essa pessoa já faleceu.")
+      
   #Mudar o estado civil das pessoas para "divorciado"
   def divorciar(self):
-    pass
+    if type(self.__conjuge) == Pessoa:
+      self.__conjuge.__est_civil = "divorciada"
+      self.__conjuge.__conjuge = None
+      self.__conjuge = None
+      self.__est_civil = "divorciada"
+    else:
+      print("Você não possui um cônjuge.")
 
   def ter_filhos(self,pessoa):
     if self.sexo == "F":
