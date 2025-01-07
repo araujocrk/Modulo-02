@@ -11,22 +11,66 @@ class Pessoa:
     self.__est_civil = est_civil
     self.__mae = None
     self.__pai = None
-    self.__mãe_adotiva = None
-    self__pai_adotivo = None
+    self.__mae_adotiva = None
+    self.__pai_adotivo = None
     self.__conjuge = None
     self.filhos = []
 
+  @property
+  def id(self):
+    return self.__id
+  
   @property
   def nome(self):
     return self.__nome
 
   @property
-  def conjuge(self):
-    return self.__conjuge
+  def idade(self):
+    return self.__idade
+  
+  @property
+  def peso(self):
+    return self.__peso
+  
+  @property
+  def peso(self):
+    return self.__peso
+  
+  @property
+  def altura(self):
+    return self.__altura
 
+  @property
+  def sexo(self):
+    return self.__sexo
+  
+  @property
+  def estado(self):
+    return self.__estado
+  
   @property
   def est_civil(self):
     return self.__est_civil
+  
+  @property
+  def mae(self):
+    return self.__mae
+  
+  @property
+  def pai(self):
+    return self.__pai
+  
+  @property
+  def mae_adotiva(self):
+    return self.__mae_adotiva
+  
+  @property
+  def pai_adotivo(self):
+    return self.__pai_adotivo
+  
+  @property
+  def conjuge(self):
+    return self.__conjuge
 
   @nome.setter
   def nome(self,valor):
@@ -40,6 +84,20 @@ class Pessoa:
            return
       self.__nome = valor
       print ("Alteração efetuada com sucesso!")
+      
+  @mae_adotiva.setter
+  def mae_adotiva(self, mae):
+    if type(mae) == Pessoa:
+      self.__mae_adotiva = mae
+    else:
+      print("Erro: Mãe adotiva não é uma Pessoa")
+      
+  @pai_adotivo.setter
+  def pai_adotivo(self, pai):
+    if type(pai) == Pessoa:
+      self.__pai_adotivo = pai
+    else:
+      print("Erro: Pai adotivo não é uma Pessoa")
 
   # Validar que uma Pessoa não pode se casar com ela mesma
   def casar(self,conjuge):
@@ -108,12 +166,59 @@ class Pessoa:
     else:
         print("Você não pode ter filhos.")
         
-  def adotar_filhos(self,criança): #condição: criança ser órfã.
-    pass
+  def adotar_filhos(self,crianca): #condição: criança ser órfã.
+    if crianca.__id != self.__id:
+      if crianca.__mae is None and crianca.__pai is None:
+        self.filhos.append(crianca)
+        if self.__sexo == "F":
+          crianca.__mae_adotiva = self
+        elif self.__sexo == "M":
+          crianca.__pai_adotivo = self
+      else:
+        print("Essa criança possui pais.")
+    else:
+      print("Você não pode se adotar!")
 
   def __str__(self):
-    pass
+    sexo = ""
+    if self.__sexo == "F":
+      sexo = "Feminino"
+    elif self.__sexo == "M":
+      sexo = "Masculino"
+    
+    mae = ""
+    pai = ""
+    conjuge = ""
+    if type(self.__mae) == Pessoa:
+      mae = f"Mãe: {self.__mae.__nome}"
+    elif type(self.__mae_adotiva) == Pessoa:
+      mae = f"Mãe adotiva: {self.__mae_adotiva.__nome}"
+      
+    if type(self.__pai) == Pessoa:
+      pai = f"Pai: {self.__pai.__nome}"
+    elif type(self.__pai_adotivo) == Pessoa:
+      pai = f"Pai adotivo: {self.__pai_adotivo.__nome}"
+      
+    if self.__conjuge is None:
+      conjuge = f"Não possui"
+    else:
+      conjuge = f"{self.__conjuge.__nome}"
+      
 
+    return (
+            f"""
+            Nome: {self.__nome}
+            Idade: {self.__idade} anos
+            Altura: {self.__altura} m
+            Peso: {self.__peso} kg
+            Sexo: {sexo}
+            Estado: {self.__estado}
+            Estado civil: {self.__est_civil}
+            {mae}
+            {pai}
+            Cônjuge: {conjuge}
+            Filhos: {len(self.filhos)}"""
+            )
 
 ####### execução ########
 
