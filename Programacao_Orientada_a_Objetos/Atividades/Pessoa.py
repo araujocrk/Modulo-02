@@ -1,5 +1,5 @@
 class Pessoa:
-  contadorId = 1 
+  contadorId = 0 
   def __init__(self,nome,idade,peso,altura,sexo,estado="viva",est_civil="solteira",mae=None, pai=None):
     self.__id = Pessoa.contadorId
     Pessoa.contadorId += 1
@@ -247,7 +247,7 @@ def main():
   joao.casar(ana)
   maria.morrer()
   joao.casar(ana)
-  joao.ter_filhos(maria)
+  cassio = joao.ter_filhos(maria)
   print(maria)
   print(joao)
   print(pedro)
@@ -265,6 +265,5 @@ def main():
   print(alan)
   print(alexandre)
   
-
 if __name__ == "__main__":
   main()
