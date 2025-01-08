@@ -1,7 +1,8 @@
 class Pessoa:
-  def __init__(self,nome,idade,peso,altura,sexo,estado="viva",est_civil="solteira",mae=None):
-    Pessoa.contador += 1
-    self.__id == Pessoa.contador
+  contadorId = 1 
+  def __init__(self,nome,idade,peso,altura,sexo,estado="viva",est_civil="solteira",mae=None, pai=None):
+    self.__id = Pessoa.contadorId
+    Pessoa.contadorId += 1
     self.__nome = nome
     self.__idade = idade
     self.__peso = peso
@@ -9,8 +10,8 @@ class Pessoa:
     self.__sexo = sexo
     self.__estado = estado
     self.__est_civil = est_civil
-    self.__mae = None
-    self.__pai = None
+    self.__mae = mae
+    self.__pai = pai
     self.__mae_adotiva = None
     self.__pai_adotivo = None
     self.__conjuge = None
@@ -105,7 +106,7 @@ class Pessoa:
       if type(conjuge) == Pessoa:
         if self.__id != conjuge.__id:
           if conjuge.__est_civil != "casada":
-            self.est_civil = "casada"
+            self.__est_civil = "casada"
             self.__conjuge = conjuge
             self.__conjuge.__est_civil = "casada"
             self.__conjuge.__conjuge = self
@@ -123,10 +124,12 @@ class Pessoa:
     if self.__estado == "viva":
       self.__estado = "morta"
       if type(self.__conjuge) == Pessoa:
-        if self.__sexo == "F":
-          self.__conjuge.__est_civil == "viúva"
-        elif self.__sexo == "M":
-          self.__conjuge.__est_civil == "viúvo"
+        if self.__conjuge.__sexo == "F":
+          self.__conjuge.__est_civil = "viúva"
+        elif self.__conjuge.__sexo == "M":
+          self.__conjuge.__est_civil = "viúvo"
+      self.__conjuge.__conjuge = None
+      self.__conjuge = None
     else:
       print("Erro: Essa pessoa já faleceu.")
       
@@ -140,6 +143,7 @@ class Pessoa:
     else:
       print("Você não possui um cônjuge.")
 
+  # Adicionar condição para que não possa ter filho com uma pessoa falecida
   def ter_filhos(self,pessoa):
     if self.sexo == "F":
         if type(pessoa)==Pessoa:
@@ -193,44 +197,50 @@ class Pessoa:
       mae = f"Mãe: {self.__mae.__nome}"
     elif type(self.__mae_adotiva) == Pessoa:
       mae = f"Mãe adotiva: {self.__mae_adotiva.__nome}"
+    else:
+      mae = "Mãe: Não informada"
       
     if type(self.__pai) == Pessoa:
       pai = f"Pai: {self.__pai.__nome}"
     elif type(self.__pai_adotivo) == Pessoa:
       pai = f"Pai adotivo: {self.__pai_adotivo.__nome}"
+    else:
+      pai = "Pai: Não informado"
       
     if self.__conjuge is None:
       conjuge = f"Não possui"
     else:
       conjuge = f"{self.__conjuge.__nome}"
       
-
     return (
             f"""
-            Nome: {self.__nome}
-            Idade: {self.__idade} anos
-            Altura: {self.__altura} m
-            Peso: {self.__peso} kg
-            Sexo: {sexo}
-            Estado: {self.__estado}
-            Estado civil: {self.__est_civil}
-            {mae}
-            {pai}
-            Cônjuge: {conjuge}
-            Filhos: {len(self.filhos)}"""
+Nome: {self.__nome}
+Idade: {self.__idade} anos
+Altura: {self.__altura} m
+Peso: {self.__peso} kg
+Sexo: {sexo}
+Estado: {self.__estado}
+Estado civil: {self.__est_civil}
+{mae}
+{pai}
+Cônjuge: {conjuge}
+Filhos: {len(self.filhos)}"""
             )
 
 ####### execução ########
-
-maria = Pessoa("Maria",30,65,1.7,'F', Pessoa("Francisca",65,60,1.6,'F')) # maria -> solteira
-joao = Pessoa(...) # joão -> solteiro
-maria.casar(joao) # joão e maria -> casado
-ana = Pessoa(...)
-pedro = joao.ter_filhos(ana)
-joao.casar(ana) # não é possivel pois joão já é casado com maria
-maria.morrer() # maria para para o estado de morto.
-joao.casar(ana) # joao e ana -> casado
-joao.ter_filhos(maria) # Erro! maria está morta.
-julia = ana.ter_filhos(joao)
-
+def main():
+  maria = Pessoa("Maria",30,65,1.7,'F', mae = Pessoa("Francisca",65,60,1.6,'F')) # maria -> solteira
+  joao = Pessoa("João",35,75,1.8,"M")
+  joao.casar(maria)
+  ana = Pessoa("Ana",25,65,1.75,"F")
+  #joao.ter_filhos(ana)
+  joao.casar(ana)
+  maria.morrer()
+  joao.casar(ana)
+  # Adicionar condição para que não possa ter filho com uma pessoa falecida
+  joao.ter_filhos(maria)
+# joao.ter_filhos(maria) # Erro! maria está morta.
+# julia = ana.ter_filhos(joao)
+if __name__ == "__main__":
+  main()
 #simular processo de adoção
