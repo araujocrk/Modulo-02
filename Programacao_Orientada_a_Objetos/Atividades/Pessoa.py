@@ -148,10 +148,13 @@ class Pessoa:
     if self.sexo == "F":
         if type(pessoa)==Pessoa:
             if pessoa.sexo == "M":
-                filho = Pessoa(input("Digite o nome do filho(a): "),0,input("Digite o peso do filho(a): "),
-                input("Digite a altura do filho(a): "), input("Digite o sexo do filho(a): "), mae = self, pai = pessoa)
-                self.filhos.append(filho)
-                pessoa.filhos.append(filho)
+              if pessoa.__estado == "viva":
+                  filho = Pessoa(input("Digite o nome do filho(a): "),0,input("Digite o peso do filho(a): "),
+                  input("Digite a altura do filho(a): "), input("Digite o sexo do filho(a): "), mae = self, pai = pessoa)
+                  self.filhos.append(filho)
+                  pessoa.filhos.append(filho)
+              else:
+                print("Essa pessoa já faleceu.")
             else:
                 print("Não é possível gerar filhos com essa pessoa.")
         else:
@@ -159,10 +162,14 @@ class Pessoa:
     elif self.sexo == "M":
         if type(pessoa)==Pessoa:
             if pessoa.sexo == "F":
-                filho = Pessoa(input("Digite o nome do filho(a): "),0,input("Digite o peso do filho(a): "),
-                input("Digite a altura do filho(a): "), input("Digite o sexo do filho(a): "), mae = pessoa, pai = self)
-                self.filhos.append(filho)
-                pessoa.filhos.append(filho)
+              if pessoa.__estado == "viva":
+                  filho = Pessoa(input("Digite o nome do filho(a): "),0,input("Digite o peso do filho(a): "),
+                  input("Digite a altura do filho(a): "), input("Digite o sexo do filho(a): "), mae = pessoa, pai = self)
+                  self.filhos.append(filho)
+                  pessoa.filhos.append(filho)
+                  return filho
+              else:
+                print("Essa pessoa já faleceu.")
             else:
                 print("Não é possível gerar filhos com essa pessoa.")
         else:
@@ -214,6 +221,7 @@ class Pessoa:
       
     return (
             f"""
+Identificador: {self.__id}
 Nome: {self.__nome}
 Idade: {self.__idade} anos
 Altura: {self.__altura} m
@@ -229,18 +237,35 @@ Filhos: {len(self.filhos)}"""
 
 ####### execução ########
 def main():
-  maria = Pessoa("Maria",30,65,1.7,'F', mae = Pessoa("Francisca",65,60,1.6,'F')) # maria -> solteira
+  maria = Pessoa("Maria",30,65,1.7,'F', mae = Pessoa("Francisca",65,60,1.6,'F'))
   joao = Pessoa("João",35,75,1.8,"M")
   joao.casar(maria)
+  print(maria)
+  print(joao)
   ana = Pessoa("Ana",25,65,1.75,"F")
-  #joao.ter_filhos(ana)
+  pedro = joao.ter_filhos(ana)
   joao.casar(ana)
   maria.morrer()
   joao.casar(ana)
-  # Adicionar condição para que não possa ter filho com uma pessoa falecida
   joao.ter_filhos(maria)
-# joao.ter_filhos(maria) # Erro! maria está morta.
-# julia = ana.ter_filhos(joao)
+  print(maria)
+  print(joao)
+  print(pedro)
+  print(ana)
+  
+  alan = Pessoa("Alan", 18, 73, 1.78, "M")
+  sabrina = Pessoa("Sabrina", 30, 65, 1.7, "F")
+  alexandre = Pessoa("Alexandre", 5, 35, 0.95, "M")
+  alan.casar(sabrina)
+  print(alan)
+  print(sabrina)
+  alan.divorciar()
+  alan.adotar_filhos(alexandre)
+  print(sabrina)
+  print(alan)
+  print(alexandre)
+  
+
 if __name__ == "__main__":
   main()
 #simular processo de adoção
