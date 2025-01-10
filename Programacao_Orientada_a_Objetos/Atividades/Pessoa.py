@@ -135,36 +135,49 @@ class Pessoa:
       
   #Mudar o estado civil das pessoas para "divorciado"
   def divorciar(self):
-    if type(self.__conjuge) == Pessoa:
-      self.__conjuge.__est_civil = "divorciada"
-      self.__conjuge.__conjuge = None
-      self.__conjuge = None
-      self.__est_civil = "divorciada"
+    if self.__estado == "viva":
+        if type(self.__conjuge) == Pessoa:
+          if self.__conjuge.__estado == "viva":
+            self.__conjuge.__est_civil = "divorciada"
+            self.__conjuge.__conjuge = None
+            self.__conjuge = None
+            self.__est_civil = "divorciada"
+            print("Divórcio realizado.")
+          else:
+            self.__conjuge = None
+            self.__est_civil = "divorciada"
+            print("Cônjuge já falecido. Divórcio realizado.")
+        else:
+          print("Você não possui um cônjuge.")
     else:
-      print("Você não possui um cônjuge.")
-
+      print("Erro: Pessoa falecida não pode iniciar um divórcio.")
   # Adicionar condição para que não possa ter filho com uma pessoa falecida
   def ter_filhos(self,pessoa):
-    if self.sexo == "F":
-        if type(pessoa)==Pessoa:
-            if pessoa.sexo == "M":
-              if pessoa.__estado == "viva":
-                  filho = Pessoa(input("Digite o nome do filho(a): "),0,input("Digite o peso do filho(a): "),
-                  input("Digite a altura do filho(a): "), input("Digite o sexo do filho(a): "), mae = self, pai = pessoa)
-                  self.filhos.append(filho)
-                  pessoa.filhos.append(filho)
-              else:
-                print("Essa pessoa já faleceu.")
+    if self.__sexo == "F":
+      if type(pessoa)==Pessoa:
+        if self.__id != pessoa.__id:
+          if pessoa.__sexo == "M":
+            if pessoa.__estado == "viva":
+              filho = Pessoa(input("Digite o nome do filho(a): "),0,input("Digite o peso do filho(a): "),
+              input("Digite a altura do filho(a): "), input("Digite o sexo do filho(a): "), mae = self, pai = pessoa)
+              self.filhos.append(filho)
+              pessoa.filhos.append(filho)
+              return filho
             else:
-                print("Não é possível gerar filhos com essa pessoa.")
+              print("Essa pessoa já faleceu.")
+          else:
+            print("Não é possível gerar filhos com essa pessoa.")
         else:
-            print("Seu parceiro(a) não é uma pessoa!")
+          print("Não é possível gerar filhos consigo mesmo.")
+      else:
+        print("Seu parceiro(a) não é uma pessoa!")
     elif self.sexo == "M":
         if type(pessoa)==Pessoa:
             if pessoa.sexo == "F":
               if pessoa.__estado == "viva":
                   filho = Pessoa(input("Digite o nome do filho(a): "),0,input("Digite o peso do filho(a): "),
-                  input("Digite a altura do filho(a): "), input("Digite o sexo do filho(a): "), mae = pessoa, pai = self)
+                  input("Digite a altura do filho(a): "), 
+                  input("Digite o sexo do filho(a): "), mae = pessoa, pai = self)
                   self.filhos.append(filho)
                   pessoa.filhos.append(filho)
                   return filho
