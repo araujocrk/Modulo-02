@@ -1,11 +1,18 @@
 class Pet:
-  def __init__(self,tipo,nome,idade,peso,raca,cor,castrado=False):
+  def __init__(self,tipo, raca, cor, nome='desconhecido', idade='desconhecida', peso='desconhecido', castrado='n'):
     self.__tipo = tipo
-    self.__nome = nome
-    self.__idade = idade
-    self.__peso = peso
     self.__raca = raca
     self.__cor = cor
+    if nome == 'desconhecido':
+      self.__nome = 'desconhecido'
+    else:
+      self.__nome = nome
+    if idade == 'desconhecida':
+      self.__idade = 'desconhecida'
+    else:
+      self.__idade = idade
+    self.__idade = idade
+    self.__peso = peso
     self.__castrado = castrado
   
   @property
@@ -89,8 +96,20 @@ def criarPessoa():
   endereco = input('Endereço: ')
   return nome, cpf, endereco
 
+def criarPet():
+  tipo = input('Qual o tipo do pet*: ')
+  raca = input('Qual a raça do pet*: ')
+  cor = input('Qual a cor do pet*: ')
+  nome = input('Qual o nome do pet(ou deixe em branco): ') or 'desconhecido'
+  idade = input('Qual a idade do pet em anos(ou deixe em branco): ') or 'desconhecida'
+  peso = input('Qual o peso do pet em kg(ou deixe em branco): ') or 'desconhecido'
+  castrado = input('O pet é castrado(Sim ou Não): ').lower()[0] or 'n'
+
 def main():
-  arthur = Pessoa(*criarPessoa())
+  #arthur = Pessoa(*criarPessoa())
+  arthur = Pessoa('Arthur', 12345678911, 'Armadillo')
+  #tom = Pet(*criarPet())
+  prince = Pet('Cavalo', 'Prince', 'Marrom', 'Prince', 10, 90, 'Não')
   arthur.cadastrar_pet()
   
 if __name__ == '__main__':
