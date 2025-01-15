@@ -15,9 +15,9 @@ class Pet:
       self.__peso = 'Desconhecido'
     else:
       self.__peso = peso
-    if castrado == 's':
+    if castrado[0].lower() == 's':
       self.__castrado = 'Sim'
-    else:
+    elif castrado[0].lower() == 'n':
       self.__castrado = 'Não'
   
   @property
@@ -43,7 +43,10 @@ class Pet:
     return self.__castrado
   
   def __str__(self):
-    return f'Tipo: {self.__tipo}\nNome: {self.__nome}\nIdade: {self.__idade}\nPeso: {self.__peso}\nRaca: {self.__raca}\nCor: {self.__cor}\nCastrado: {self.__castrado}\n'
+    return f'Tipo: {self.__tipo}\nNome: {self.__nome}\nIdade: {self.__idade}\nPeso: {self.__peso}\nRaça: {self.__raca}\nCor: {self.__cor}\nCastrado: {self.__castrado}\n'
+
+
+
 
 class Pessoa:
   def __init__(self,nome,cpf,endereco):
@@ -72,6 +75,7 @@ class Pessoa:
   def cadastrar_pet(self,pet):
     if type(pet) == Pet:
       self.__meus_pets.append(pet)
+      print('Pet cadastrado com sucesso.')
     else:
       print('Erro: Você não está cadastrando um pet.')
 
@@ -116,18 +120,23 @@ def criarPet():
   nome = input('Qual o nome do pet(ou deixe em branco): ') or 'desconhecido'
   idade = input('Qual a idade do pet em anos(ou deixe em branco): ') or 'desconhecida'
   peso = input('Qual o peso do pet em kg(ou deixe em branco): ') or 'desconhecido'
-  castrado = input('O pet é castrado(Sim ou Não): ').lower()[0] or 'n'
+  castrado = input('O pet é castrado(Sim ou Não): ') or 'n'
+  return tipo, raca, cor, nome, idade, peso, castrado
 
 def main():
   #arthur = Pessoa(*criarPessoa())
   arthur = Pessoa('Arthur', '12345678911', 'Armadillo')
   #tom = Pet(*criarPet())
-  prince = Pet('Cavalo', 'Prince', 'Marrom', 'Prince', 10, 90, 'Não')
+  prince = Pet('Cavalo', 'Prince', 'Marrom', 'Prince', 10, 90, 'Sim')
   arthur.cadastrar_pet(prince)
+  arthur.mostrar_meus_pets()
   penny = Pet('Cachorro', 'Cocker Spaniel', 'Castanho', 'Penny')
   arthur.cadastrar_pet(arthur)
-  arthur.excluir_pet(prince)
+  arthur.excluir_pet(arthur)
   arthur.cadastrar_pet(penny)
+  print(arthur)
+  arthur.mostrar_meus_pets()
+  arthur.excluir_pet(prince)
   print(arthur)
   arthur.mostrar_meus_pets()
   
