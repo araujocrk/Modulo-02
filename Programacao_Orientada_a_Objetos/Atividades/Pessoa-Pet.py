@@ -1,19 +1,24 @@
 class Pet:
-  def __init__(self,tipo, raca, cor, nome='desconhecido', idade='desconhecida', peso='desconhecido', castrado='n'):
+  def __init__(self,tipo, raca, cor, nome='desconhecido', idade='desconhecida', peso='desconhecido', castrado='não'):
     self.__tipo = tipo
     self.__raca = raca
     self.__cor = cor
     if nome == 'desconhecido':
-      self.__nome = 'desconhecido'
+      self.__nome = 'Desconhecido'
     else:
       self.__nome = nome
     if idade == 'desconhecida':
-      self.__idade = 'desconhecida'
+      self.__idade = 'Desconhecida'
     else:
       self.__idade = idade
-    self.__idade = idade
-    self.__peso = peso
-    self.__castrado = castrado
+    if peso == 'desconhecido':
+      self.__peso = 'Desconhecido'
+    else:
+      self.__peso = peso
+    if castrado == 's':
+      self.__castrado = 'Sim'
+    else:
+      self.__castrado = 'Não'
   
   @property
   def tipo(self):
@@ -36,6 +41,9 @@ class Pet:
   @property
   def castrado(self):
     return self.__castrado
+  
+  def __str__(self):
+    return f'Tipo: {self.__tipo}\nNome: {self.__nome}\nIdade: {self.__idade}\nPeso: {self.__peso}\nRaca: {self.__raca}\nCor: {self.__cor}\nCastrado: {self.__castrado}\n'
 
 class Pessoa:
   def __init__(self,nome,cpf,endereco):
@@ -61,21 +69,26 @@ class Pessoa:
   def meus_pets(self):
     return self.__meus_pets
   
-  @meus_pets.setter
-  def meus_pets(self, pet):
+  def cadastrar_pet(self,pet):
     if type(pet) == Pet:
       self.__meus_pets.append(pet)
     else:
       print('Erro: Você não está cadastrando um pet.')
 
-  def cadastrar_pet(self,pet):
-    self.__meus_pets = pet
-
-  def excluir_pet(self,nome):
-    pass
+  def excluir_pet(self, pet):
+    if type(pet) == Pet:
+      for p in self.__meus_pets:
+        if p._Pet__nome == pet._Pet__nome:
+          self.__meus_pets.remove(p)
+          print('Pet excluido com sucesso.')
+          return
+      print('Pet não encontrado.')
+    else:
+      print('Erro: Você não está excluindo um pet.')
 
   def mostrar_meus_pets(self):
-    pass
+    for pet in self.__meus_pets:
+      print(pet)
   
   def validarCpf(self, cpf):
     if len(cpf) == 11:
@@ -88,7 +101,7 @@ class Pessoa:
       raise ValueError('Erro: Cpf deve possuir 11 números.')
     
   def __str__(self):
-    return f'Nome: {self.__nome}\nCpf: {self.__cpf}\nEndereço: {self.__endereco}'
+    return f'Nome: {self.__nome}\nCpf: {self.__cpf}\nEndereço: {self.__endereco}\nPets: {len(self.__meus_pets)}\n'
   
 def criarPessoa():
   nome = input('Nome: ')
@@ -107,10 +120,16 @@ def criarPet():
 
 def main():
   #arthur = Pessoa(*criarPessoa())
-  arthur = Pessoa('Arthur', 12345678911, 'Armadillo')
+  arthur = Pessoa('Arthur', '12345678911', 'Armadillo')
   #tom = Pet(*criarPet())
   prince = Pet('Cavalo', 'Prince', 'Marrom', 'Prince', 10, 90, 'Não')
-  arthur.cadastrar_pet()
+  arthur.cadastrar_pet(prince)
+  penny = Pet('Cachorro', 'Cocker Spaniel', 'Castanho', 'Penny')
+  arthur.cadastrar_pet(arthur)
+  arthur.excluir_pet(prince)
+  arthur.cadastrar_pet(penny)
+  print(arthur)
+  arthur.mostrar_meus_pets()
   
 if __name__ == '__main__':
   main()
