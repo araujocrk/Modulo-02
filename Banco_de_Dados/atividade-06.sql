@@ -54,8 +54,10 @@ SELECT * FROM funcionarios
 WHERE sexo = 'M' 
 AND salario >= 3000.00;
 
-SELECT * FROM funcionarios
-WHERE numero_departamento = 101;
+SELECT f.nome 
+FROM funcionarios as f, departamentos as d
+WHERE d.nome = 'Vendas'
+AND f.numero_departamento = d.numero_departamento;
 
 SELECT * FROM funcionarios
 WHERE numero_departamento = 202 
