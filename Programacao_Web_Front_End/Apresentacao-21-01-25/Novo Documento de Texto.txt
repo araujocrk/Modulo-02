@@ -1,0 +1,24 @@
+One Piece API
+É uma API usada para acessar informações sobre o mangá One Piece, 
+incluindo sagas, frutas, capítulos, volumes, episódios, personagens e muito mais.
+
+Alguns exemplos de buscas usando o método GET:
+Personagens
+Todos os personagens de one piece
+curl -X GET https://api.api-onepiece.com/v2/characters/en
+curl -X GET https://api.api-onepiece.com/v2/characters/en/{id}
+Parâmetros: name=, age=, size=
+curl -X GET https://api.api-onepiece.com/v2/characters/en/search?
+
+Frutas
+Todas as frutas de one piece
+curl -X GET https://api.api-onepiece.com/v2/fruits/en
+curl -X GET https://api.api-onepiece.com/v2/fruits/en/{id}
+curl -X GET https://api.api-onepiece.com/v2/fruits/en/search?
+Parâmetros: name=, type=
+
+https://jsonformatter.org/
+Pexels API Key
+Ssr8EePplZSaIEyFs4GUvrX1XveGEOHIgNPr3pIOvjzym3eS3pvStspS
+
+https://678e46eba64c82aeb11fc5ec.mockapi.io/tarefas
