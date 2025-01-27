@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Preço - Binance</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script defer src="scripts.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Consultar Preço de Moedas</h1>
+
+        <label for="moedaBase">Moeda Base (Ex.: BTC):</label>
+        <input type="text" id="moedaBase" placeholder="Digite a moeda base" list="moedasConhecidas">
+
+        <button id="botaoInverter">Inverter Moedas</button>
+
+        <label for="moedaConversao">Moeda Conversão (Ex.: USDT):</label>
+        <input type="text" id="moedaConversao" placeholder="Digite a moeda de conversão" list="moedasConhecidas">
+
+        <datalist id="moedasConhecidas">
+            <option value="BTC"></option>
+            <option value="ETH"></option>
+            <option value="SOL"></option>
+            <option value="USDT"></option>
+            <option value="BRL"></option>
+            <option value="EUR"></option>
+        </datalist>
+
+        <button id="botaoConsultar">Consultar</button>
+        <div id="resultado"></div>
+        <button id="botaoLimpar" type="reset">Limpar</button>
+    </div>
+
+</body>
+
+</html>
