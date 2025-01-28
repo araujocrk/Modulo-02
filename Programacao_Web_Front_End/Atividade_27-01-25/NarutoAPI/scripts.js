@@ -46,7 +46,7 @@ async function pesquisarTime() {
             }
 
             let json = await response.json();
-            const integrantes = json.characters.map(character => character.name).join(', ');
+            let integrantes = json.characters.map(character => character.name).join(', ');
             resultadoTime.innerHTML = `
             <p><strong>Nome do time:</strong>${json.name || 'Desconhecido'}</p>
             <p><strong>Integrantes:</strong>${integrantes || 'Desconhecido'}</p>
