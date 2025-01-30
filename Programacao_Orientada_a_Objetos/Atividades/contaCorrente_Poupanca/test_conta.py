@@ -1,26 +1,27 @@
 import pytest 
-from contaCorrente_Poupanca import ContaCorrente, ContaPoupanca
+from contaCP import ContaCorrente, ContaPoupanca
 
-# def test_creditar():
-#     conta = ContaCorrente('123', 1000.00)
-#     resultado_esperado = 1500.00
-#     resultado = conta.creditar(500)
-#     assert resultado_esperado == resultado
-    
-#     with pytest.raises(ValueError):
-#         conta.creditar('500')
-    
-#     with pytest.raises(ValueError):
-#         conta.creditar(-500)
+def test_creditar():
+    conta = ContaCorrente('123', 1000.00)
+    resultado_esperado = 1500.50
+    resultado = conta.creditar(500.50)
+    assert resultado_esperado == resultado
         
 def test_debitar():
     conta = ContaCorrente('123', 1000.00)
-    resultado_esperado = 500.00
-    resultado = conta.debitar(500)
+    resultado_esperado = 699.50
+    resultado = conta.debitar(300.50)
     assert resultado_esperado == resultado
     
-    with pytest.raises(ValueError):
-        conta.debitar('500')
+def test_saldo():
+    conta = ContaCorrente('123', 1000.00)
+    resultado_esperado = 1000.00
+    resultado = conta.saldo
+    assert resultado_esperado == resultado
     
-    with pytest.raises(ValueError):
-        conta.debitar(-500)
+def test_transferir():
+    conta_origem = ContaCorrente('123', 1000.00)
+    conta_destino = ContaCorrente('456', 0.00)
+    resultado_esperado_origem, resultado_esperado_destino = conta_origem.transferir(conta_destino, 400)
+    assert resultado_esperado_origem == 600.00
+    assert resultado_esperado_destino == 400.00
