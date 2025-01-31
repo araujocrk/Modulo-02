@@ -23,24 +23,29 @@ WHERE	pp.id_pedido = 1 AND
 		pp.id_produto = pro.id_produto;
 
 
-SELECT	SUM(pp.preco_unitario)
+SELECT	pp.id_pedido, SUM(pp.preco_unitario) as preco_total
 FROM	pedidos_produtos as pp, produtos as pro
 WHERE	pp.id_pedido = 1 AND
-		pp.id_produto = pro.id_produto;
+		pp.id_produto = pro.id_produto
+GROUP BY pp.id_pedido;
 
 -- 5 Questão
-SELECT  COUNT(*)
+SELECT  COUNT(p.id_pedido)
 FROM	clientes as c, pedidos as p
 WHERE	c.nome = 'Beltrano' AND
 		c.id_cliente = p.id_cliente;
 
 -- 6 Questão
-SELECT	SUM(pp.preco_unitario) --pp.preco_unitario, pp.id_pedido
+--SELECT pp.id_pedido, pp.preco_unitario, pp.quantidade, 
+--SUM(pp.preco_unitario * pp.quantidade) as preco_total_pedido
+SELECT  SUM(pp.preco_unitario * pp.quantidade) as preco_total_pedido
 FROM 	pedidos_produtos as pp, produtos as pro
 WHERE 	pp.id_pedido = 2 AND
-		pp.id_produto = pro.id_produto
+		pp.id_produto = pro.id_produto;
+--GROUP BY pp.id_pedido, pp.preco_unitario, pp.quantidade;
 
 -- 7 Questão
-SELECT SUM()
-FROM pedidos_produtos as pp, produdos as pro
-WHERE 
+SELECT	SUM(pp.quantidade * pp.preco_unitario) as preco_total_pedidos
+FROM	pedidos as ped, pedidos_produtos as pp
+WHERE	ped.id_cliente = 1 AND
+		ped.id_pedido = pp.id_pedido;
