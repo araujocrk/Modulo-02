@@ -56,8 +56,36 @@ class ContaCorrente: #Superclasse
         if valor > self._saldo:
             raise ValueError('Saldo insuficiente')
         return True
+    
+    def __str__(self):
+        return f'Conta Corrente: {self._numero}\nSaldo: {self._saldo}'
                 
 class ContaPoupanca(ContaCorrente):
     def __init__(self,numero,saldo,taxa_juros):
         super().__init__(numero, saldo)
-        self.taxa_juros = taxa_juros
+        if self.valorEhIntFloat(taxa_juros):
+            if self.valorEhMaiorQueZero:
+                self._taxa_juros = taxa_juros
+
+    @property
+    def taxa_juros(self):
+        return self._taxa_juros
+
+    def renderJuros(self):
+        self._saldo += self._saldo * self.taxa_juros
+        return self._saldo
+    
+class ContaImposto(ContaCorrente):
+    def __init__(self,numero,saldo,percentual_imposto):
+        super().__init__(numero, saldo)
+        if self.valorEhIntFloat(percentual_imposto):
+            if self.valorEhMaiorQueZero:
+                self._taxa_imposto = percentual_imposto
+
+    @property
+    def taxa_imposto(self):
+        return self._taxa_imposto
+
+    def calcularImposto(self):
+        self._saldo -= self._saldo * self.taxa_imposto
+        return self._saldo
