@@ -58,9 +58,9 @@ class ContaCorrente: #Superclasse
         return True
     
     def __str__(self):
-        return f'Conta Corrente: {self._numero}\nSaldo: {self._saldo}'
+        return f'Conta: {self._numero}\nSaldo: {self._saldo}'
                 
-class ContaPoupanca(ContaCorrente):
+class ContaPoupanca(ContaCorrente): #Subclasse 
     def __init__(self,numero,saldo,taxa_juros):
         super().__init__(numero, saldo)
         if self.valorEhIntFloat(taxa_juros):
@@ -74,8 +74,11 @@ class ContaPoupanca(ContaCorrente):
     def renderJuros(self):
         self._saldo += self._saldo * self.taxa_juros
         return self._saldo
+        
+    def __str__(self):
+        return f'Conta: {self._numero}\nSaldo: {self._saldo}\nTaxa de juros: {self._taxa_juros}'
     
-class ContaImposto(ContaCorrente):
+class ContaImposto(ContaCorrente): #Subclasse
     def __init__(self,numero,saldo,percentual_imposto):
         super().__init__(numero, saldo)
         if self.valorEhIntFloat(percentual_imposto):
@@ -89,3 +92,6 @@ class ContaImposto(ContaCorrente):
     def calcularImposto(self):
         self._saldo -= self._saldo * self.taxa_imposto
         return self._saldo
+       
+    def __str__(self):
+        return f'Conta: {self._numero}\nSaldo: {self._saldo}\nTaxa de impostos: {self._taxa_imposto}'
