@@ -7,6 +7,8 @@
 
 body {
     font-size: 100%;
+    width: 90vw;
+    margin: auto;
 }
 
 .cabecalho {
@@ -42,4 +44,30 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    padding: 20px 0px;
+}
+
+.conteudo-saudacao-texto {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.conteudo-saudacao-titulo {
+    font-size: 4.5em;
+}
+
+.conteudo-saudacao-paragrafo {
+    font-size: 1.2em;
+    text-align: justify;
+}
+
+.conteudo-saudacao-imagem {
+    height: 400px;
+}
+
+.conteudo-blog {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
