@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-size: 100%;
+}
+
+.cabecalho {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.cabecalho img {
+    height: 72px;
+    border-radius: 40px;
+}
+
+.cabecalho nav {
+    display: flex;
+    gap: 40px;
+}
+
+.cabecalho nav a {
+    color: black;
+    font-size: 18px;
+}
+
+.conteudo {
+    border-top: 0.4px solid black;
+    margin-bottom: 40px;
+}
+
+.conteudo-saudacao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
