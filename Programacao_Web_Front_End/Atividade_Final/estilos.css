@@ -9,6 +9,7 @@ body {
     font-size: 100%;
     width: 90vw;
     margin: auto;
+    background-color: #f5e4d3;
 }
 
 .cabecalho {
@@ -17,6 +18,7 @@ body {
     align-items: center;
     justify-content: space-around;
     padding: 20px;
+    background-color: #635348;
 }
 
 .cabecalho img {
@@ -31,11 +33,15 @@ body {
 
 .cabecalho nav a {
     color: black;
-    font-size: 18px;
+    font-size: 22px;
+    color: #DAC0A7;
+}
+
+.cabecalho nav a:hover {
+    color: #e67e22;
 }
 
 .conteudo {
-    border-top: 0.4px solid black;
     margin-bottom: 40px;
 }
 
@@ -44,7 +50,8 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    padding: 20px 0px;
+    padding: 50px 0px;
+    background-color: #635348;
 }
 
 .conteudo-saudacao-texto {
@@ -52,6 +59,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    color: #DAC0A7;
 }
 .conteudo-saudacao-titulo {
     font-size: 4.5em;
@@ -70,4 +78,50 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    background-color: #DAC0A7;
+}
+
+.post {
+    padding: 15px;
+    border-bottom: 0.2px solid #635348;
+    margin: 10px;
+}
+
+.conteudo-blog-titulo-container {
+    text-align: center;
+}
+
+.conteudo-blog-titulo {
+    width: 90%;
+    text-align: initial;
+    display: inline-block;
+    color: #524942;
+    font-size: 2.5em;
+    padding: 20px 0px 30px 30px;
+    border-bottom: 0.4px solid #524942;   
+}
+
+.user {
+    font-size: 1.3em;
+}
+
+.email {
+    font-size: 0.8em;
+    display: block;
+    padding: 5px 0px 10px 0px;
+}
+
+.conteudoBlogPost p {
+    padding: 15px;
+}
+
+.comentarioLink {
+    display: block;
+    margin-top: 10px;
+    color: #e67e22;
+    cursor: pointer;
+}
+
+.comentarioLink:hover {
+    text-decoration: underline;
 }
