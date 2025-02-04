@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
         // Substituir userId pelo nome do usuário
-        const conteudoBlogPost = document.getElementById("conteudoBlogPost");
+        const containerPosts = document.getElementById("containerPosts");
         posts.forEach(post => {
             const user = userMap[post.userId] || { name: "Desconhecido", email: "N/A" };
             const postElement = document.createElement("div");
@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             postElement.innerHTML = `
                 <p class="user">${user.name}</p>
                 <span class="email">${user.email}</span>
-                <p>${post.body}</p>
+                <p class="body">${post.body}</p>
                 <a class="comentarioLink" onclick="mostrarComentarios(${post.id})">Ver Comentários</a>
             `;
-            conteudoBlogPost.appendChild(postElement);
+            containerPosts.appendChild(postElement);
         });
 
     } catch (error) {
