@@ -3,6 +3,8 @@ class Veiculo:
         self._chassi = chassi
         self._ano = ano
 
+    def calcular_custo(self, distancia, preco_comb):
+        raise NotImplementedError('Método não implementado na classe pai')
     def __str__(self):
         return f'Chassi: {self._chassi}\n Ano: {self._ano}'
 
