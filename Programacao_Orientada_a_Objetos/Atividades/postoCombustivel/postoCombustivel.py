@@ -1,7 +1,7 @@
 # Pode conter múltiplas bombas de combustível (associação 1:N).
 class PostoDeCombustivel:
-    def __init__(self,qtdBombaComb):
-        self._qtdBombaComb = qtdBombaComb
+    def __init__(self):
+        self._qtdBombaComb = []
        
     def adicionarBombaComb(self, bombaComb):
         pass
@@ -24,6 +24,9 @@ class BombaDeCombustivel:
 class Combustivel:
     def __init__(self, nome, valorLitro):
         self._nome = nome
+        if isinstance(valorLitro, float):
+            if valorLitro > 0:
+                self.
         self._valorLitro = valorLitro
     
     def calcularValor(qtdLitros):
