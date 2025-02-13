@@ -8,12 +8,14 @@ class PostoDeCombustivel:
         # Recebe bomba e verifica se ela é do tipo BombaDeCombustivel
         if isinstance(bomba, BombaDeCombustivel):
             self.bombas.append(bomba)
+            return f'Cadastrando bomba {bomba.identificador}...'
         else:
             raise TypeError('Bomba inválida. A bomba deve ser do tipo BombaDeCombustivel.')
 
     def listar_bombas(self):
         # Para cada item na lista de bombas, imprime o identificador da bomba
-        return [f"Bomba: {b.identificador}" for b in self.bombas]
+        lista_bombas_formatada = [f'Bomba: {bomba.identificador}' for bomba in self.bombas]
+        return ", ".join(lista_bombas_formatada)
    
 class BombaDeCombustivel:
     # Contador de bombas
@@ -29,30 +31,32 @@ class BombaDeCombustivel:
         # Recebe combustivel e verifica se ele é do tipo Combustivel
         if isinstance(combustivel, Combustivel): # Testar se é apenas a superclasse ou precisa das subclasses
             self.combustivel = combustivel
+            if isinstance(self.combustivel, Gasolina):
+                return f'Associando {self.combustivel.nome} (aditivada: {'Sim' if self.combustivel.aditivada else 'Não'}) a bomba {self.identificador}...'
+            elif isinstance(self.combustivel, Etanol):
+                return f'Associando {self.combustivel.nome} (origem: {self.combustivel.origem}) a bomba {self.identificador}...'
         else:
             raise TypeError('Combustível inválido. O combustível deve ser do tipo Combustivel.')
 
-    def abastecer(self, qtd_litros):
-        if self.combustivel is None:
-            raise ValueError("Bomba sem combustível associado.")
-        total_pagar = self.combustivel.calcular_valor(qtd_litros)
-        return Abastecimento(self, qtd_litros, total_pagar)
-     
-class Abastecimento:
-    def __init__(self, bomba, qtd_litros, valor_total):
-        self.bomba = bomba
-        self.qtd_litros = qtd_litros
-        self.valor_total = valor_total
-
-    def __str__(self):
-        tipo_combustivel = type(self.bomba.combustivel).__name__
-        detalhes = "Aditivada" if isinstance(self.bomba.combustivel, Gasolina) and self.bomba.combustivel.aditivada else self.bomba.combustivel.origem
-        return f"Bomba {self.bomba.identificador} ({tipo_combustivel} - {detalhes}): {self.qtd_litros} litros -> R$ {self.valor_total:.2f}"     
+    # def abastecer(self, qtd_litros):
+    #     if isinstance(self.combustivel, Combustivel):
+            
+    #         raise TypeError("Bomba sem combustível associado.")
+    #     else:
+            
+    #     total_pagar = self.combustivel.calcular_valor(qtd_litros)
+    #     return Abastecimento(self, qtd_litros, total_pagar) 
 
 # Superclasse
 class Combustivel:
     def __init__(self, nome, preco_por_litro):
-        self.nome = nome
+        lista_nomes = ['Gasolina', 'Etanol']
+        nome_capitalizado = nome.capitalize()
+        if nome_capitalizado in lista_nomes:
+            self.nome = nome_capitalizado
+        else:
+            raise ValueError('Nome inválido. O nome deve ser "Gasolina" ou "Etanol".')
+        
         if isinstance(preco_por_litro, (float, int)):
             if preco_por_litro > 0:
                 self.preco_por_litro = preco_por_litro
@@ -75,7 +79,7 @@ class Gasolina(Combustivel):
         elif aditivada.lower() == 'não':
             self.aditivada = False
         else:
-            raise ValueError('Aditivada deve ser "sim" ou "não".')
+            raise ValueError('Aditivada deve ser "Sim" ou "Não".')
 
     # Recebe quantidade de litros
     def calcular_valor(self, qtd_litros):
@@ -87,6 +91,26 @@ class Etanol(Combustivel):
         # Reusa o construtor da superclasse 
         super().__init__('Etanol', preco_por_litro)
         # Lista de origens do etanol do posto
-        self.lista_origem = ['cana_de_açucar', 'milho']
+        self.lista_origem = ['Cana de açucar', 'Milho']
         # Recebe origem do etanol e verifica se existe na lista de origens
-        self.origem = origem
+        origem_capitalizado = origem.capitalize()
+        if origem_capitalizado in self.lista_origem:
+            self.origem = origem_capitalizado
+        else:
+            raise ValueError('Origem inválida. A origem deve ser "Cana de açucar" ou "Milho".')
+
+    # Recebe quantidade de litros
+    def calcular_valor(self, qtd_litros):
+        # Retorna o valor total do abastecimento
+        return qtd_litros * self.preco_por_litro
+    
+class Abastecimento:
+    def __init__(self, bomba, qtd_litros, valor_total):
+        self.bomba = bomba
+        self.qtd_litros = qtd_litros
+        self.valor_total = valor_total
+
+    def __str__(self):
+        tipo_combustivel = type(self.bomba.combustivel).__name__
+        detalhes = "Aditivada" if isinstance(self.bomba.combustivel, Gasolina) and self.bomba.combustivel.aditivada else self.bomba.combustivel.origem
+        return f"Bomba {self.bomba.identificador} ({tipo_combustivel} - {detalhes}): {self.qtd_litros} litros -> R$ {self.valor_total:.2f}"    
