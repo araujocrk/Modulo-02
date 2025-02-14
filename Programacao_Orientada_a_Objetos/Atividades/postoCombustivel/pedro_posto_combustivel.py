@@ -31,22 +31,23 @@ class BombaDeCombustivel:
         # Recebe combustivel e verifica se ele é do tipo Combustivel
         if isinstance(combustivel, Combustivel): # Testar se é apenas a superclasse ou precisa das subclasses
             self.combustivel = combustivel
-            if isinstance(self.combustivel, Gasolina):
-                return f'Associando {self.combustivel.nome} (aditivada: {'Sim' if self.combustivel.aditivada else 'Não'}) a bomba {self.identificador}...'
-            elif isinstance(self.combustivel, Etanol):
-                return f'Associando {self.combustivel.nome} (origem: {self.combustivel.origem}) a bomba {self.identificador}...'
+            return f'Associando {self.combustivel} à bomba {self.identificador}...'
         else:
             raise TypeError('Combustível inválido. O combustível deve ser do tipo Combustivel.')
 
-    # def abastecer(self, qtd_litros):
-    #     if isinstance(self.combustivel, Combustivel):
-            
-    #         raise TypeError("Bomba sem combustível associado.")
-    #     else:
-            
-    #     total_pagar = self.combustivel.calcular_valor(qtd_litros)
-    #     return Abastecimento(self, qtd_litros, total_pagar) 
-
+    def abastecer(self, qtd_litros, controle):
+        if isinstance(self.combustivel, Combustivel):
+            if isinstance(qtd_litros, (float, int)):
+                if qtd_litros > 0:
+                    abastecimento = Abastecimento(self, qtd_litros)
+                    return f'Realizando abastecimento na bomba {self.identificador}: {qtd_litros} litros...\nTotal a pagar: R$ {abastecimento.valor:.2f}'
+                else:
+                    raise ValueError('Quantidade de litros deve ser maior que zero.')
+            else:
+                raise TypeError('Quantidade de litros deve ser um float ou inteiro.')
+        else:
+            raise TypeError('Combustível inválido. O combustível não foi associado a essa bomba.')
+        
 # Superclasse
 class Combustivel:
     def __init__(self, nome, preco_por_litro):
@@ -68,6 +69,9 @@ class Combustivel:
     def calcular_valor(self, qtd_litros):
         raise NotImplementedError('Método não implementado na superclasse')
     
+    def __str__(self):
+        return f'{self.nome} genérico.'
+    
 # Subclasse
 class Gasolina(Combustivel):
     def __init__(self, preco_por_litro, aditivada):
@@ -86,6 +90,9 @@ class Gasolina(Combustivel):
         # Retorna o valor total do abastecimento
         return qtd_litros * self.preco_por_litro
 
+    def __str__(self):
+        return f'Gasolina {'Aditivada' if self.aditivada else 'Não aditivada'}'
+    
 class Etanol(Combustivel):
     def __init__(self, preco_por_litro, origem):
         # Reusa o construtor da superclasse 
@@ -104,13 +111,50 @@ class Etanol(Combustivel):
         # Retorna o valor total do abastecimento
         return qtd_litros * self.preco_por_litro
     
-class Abastecimento:
-    def __init__(self, bomba, qtd_litros, valor_total):
-        self.bomba = bomba
-        self.qtd_litros = qtd_litros
-        self.valor_total = valor_total
-
     def __str__(self):
-        tipo_combustivel = type(self.bomba.combustivel).__name__
-        detalhes = "Aditivada" if isinstance(self.bomba.combustivel, Gasolina) and self.bomba.combustivel.aditivada else self.bomba.combustivel.origem
-        return f"Bomba {self.bomba.identificador} ({tipo_combustivel} - {detalhes}): {self.qtd_litros} litros -> R$ {self.valor_total:.2f}"    
+        return f'Etanol de {self.origem}'
+    
+class Abastecimento:
+    def __init__(self, bomba, qtd_litros):
+        # Posso usar bomba.combustivel para acessar os atributos de Combustivel
+        if isinstance(bomba, BombaDeCombustivel):
+            self.bomba = bomba
+        else:
+            raise TypeError('Bomba inválida. A bomba deve ser do tipo BombaDeCombustivel.')
+        self.combustivel = bomba.combustivel
+        if isinstance(qtd_litros, (float, int)):
+            if qtd_litros > 0:
+                self.qtd_litros = qtd_litros
+            else:
+                raise ValueError('Quantidade de litros deve ser maior que zero.')
+        else:
+            raise TypeError('Quantidade de litros deve ser um float ou inteiro.')
+        self.valor = self.combustivel.calcular_valor(qtd_litros)
+        
+    def resumo_abastecimento(self):
+        return f'Abastecimento na bomba {self.bomba.identificador}: {self.qtd_litros} litros -> R$ {self.valor:.2f}'
+    
+class Controle_De_Abastecimentos:
+    def __init__(self):
+        self.abastecimentos = []
+        self.valor_total_abastecimentos = 0
+        
+    def registrar_abastecimento(self, abastecimento):
+        if isinstance(abastecimento, Abastecimento):
+            self.abastecimentos.append(abastecimento)
+            return f'Realizando abastecimento na bomba {abastecimento.bomba.identificador}: {abastecimento.qtd_litros} litros...\nTotal a pagar: R$ {abastecimento.valor:.2f}'
+        else:
+            raise TypeError('Abastecimento inválido. O abastecimento deve ser do tipo Abastecimento.')
+        
+    def resumo_abastecimentos(self):
+        print('Resumo dos abastecimentos:')
+        for a in self.abastecimentos:
+            if isinstance(a.bomba.combustivel, Gasolina):
+                print(f'- Bomba {a.bomba.identificador} ({a.bomba.combustivel}): {a.qtd_litros} litros -> R$ {a.valor:.2f}')
+            elif isinstance(a.bomba.combustivel, Etanol):
+                print(f'- Bomba {a.bomba.identificador} ({a.bomba.combustivel}): {a.qtd_litros} litros -> R$ {a.valor:.2f}')
+                
+    def adicionar_valor_abastecimento(self, abastecimento):
+        self.valor_total_abastecimentos += abastecimento.combustivel.calcular_valor(abastecimento.qtd_litros)
+             
+    
